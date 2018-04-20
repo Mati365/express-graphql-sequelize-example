@@ -7,6 +7,8 @@ module.exports = (sequelize, DataTypes) => {
           allowNull: false,
         },
         eta: DataTypes.DATE,
+        createdAt: DataTypes.DATE,
+        updatedAt: DataTypes.DATE,
       },
       {});
 

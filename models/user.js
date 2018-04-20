@@ -18,12 +18,14 @@ module.exports = (sequelize, DataTypes) => {
         },
         bio: DataTypes.TEXT,
         age: DataTypes.TINYINT,
-        phone: DataTypes.STRING(15)
+        phone: DataTypes.STRING(15),
+        createdAt: DataTypes.DATE,
+        updatedAt: DataTypes.DATE,
       });
 
   User.associate = (models) => {
-    User.hasMany(models.Article);
-    User.hasMany(models.Task);
+    User.Articles = User.hasMany(models.Article);
+    User.Tasks = User.hasMany(models.Task);
   };
 
   return User;

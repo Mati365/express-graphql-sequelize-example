@@ -3,6 +3,8 @@ module.exports = (sequelize, DataTypes) => {
   const Category = sequelize.define(
     'Category',
     {
+      createdAt: DataTypes.DATE,
+      updatedAt: DataTypes.DATE,
       name: {
         type: DataTypes.STRING,
         allowNull: false,
@@ -12,7 +14,7 @@ module.exports = (sequelize, DataTypes) => {
     {});
 
   Category.associate = (models) => {
-    models.Article.belongsToMany(
+    models.Article.Categories = models.Article.belongsToMany(
       Category,
       {through: 'ArticleCategories'});
 

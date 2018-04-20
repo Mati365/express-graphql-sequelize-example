@@ -1,12 +1,15 @@
 import React from 'react';
 import ReactDOMServer from 'react-dom/server';
 import express from 'express';
+import graphqlHTTP from 'express-graphql';
 import * as R from 'ramda';
 
 import redisStreamCache from './decorators/redisStreamCache';
 
 import Models from '../models';
 import HTMLSkeleton from '../client/components/HTMLSkeleton.jsx';
+
+import GQLSchema from './graphql-schema';
 
 const app = express();
 const appComponentRedisCache = redisStreamCache(
@@ -37,10 +40,11 @@ const UsersTable = ({users}) => {
       <table>
         <thead>
           <tr>
-            <th>Name:</th>
-            <th>Surname:</th>
-            <th>Articles:</th>
-            <th>Tasks:</th>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Surname</th>
+            <th>Articles</th>
+            <th>Tasks</th>
           </tr>
         </thead>
 
@@ -57,6 +61,7 @@ const UsersTable = ({users}) => {
                 itemProp='creator'
                 itemType='https://schema.org/Product'
               >
+                <td>{user.id}</td>
                 <td itemProp='name'>{user.firstName}</td>
                 <td itemProp='additionalName'>{user.lastName}</td>
                 <td>
@@ -91,6 +96,10 @@ const AppSkeleton = appComponentRedisCache(
 );
 
 app
+  .use('/graphql', graphqlHTTP({
+    schema: GQLSchema,
+    graphiql: true
+  }))
   .get('/', (req, res) => {
     AppSkeleton.__renderStream(
       res, 
