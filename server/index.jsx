@@ -98,7 +98,7 @@ app
       null,
       async () => ({
         users: await Models.User.findAll({
-          limit: 100,
+          limit: 200,
           attributes: ['firstName', 'lastName', 'id'],
           include: [
             {

@@ -11,7 +11,7 @@ const cacheStream = (cacheFn) => {
   return new Transform({
     transform(chunk, env, callback) {
       cacheEntry += chunk;
-      callback(null, chunk);
+      callback();
     },
 
     flush(callback) {
