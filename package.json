@@ -1,0 +1,31 @@
+{
+  "name": "database",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.jsx",
+  "dependencies": {
+    "@babel/core": "^7.0.0-beta.44",
+    "@babel/node": "^7.0.0-beta.44",
+    "@babel/preset-env": "^7.0.0-beta.44",
+    "@babel/preset-react": "^7.0.0-beta.44",
+    "body-parser": "^1.18.2",
+    "casual": "^1.5.19",
+    "elasticsearch": "^14.2.2",
+    "express": "^4.16.3",
+    "graphql": "^0.13.2",
+    "mysql2": "^1.5.3",
+    "ramda": "^0.25.0",
+    "react": "^16.3.2",
+    "react-dom": "^16.3.2",
+    "redis": "^2.8.0",
+    "sequelize": "^4.37.6",
+    "sequelize-cli": "^4.0.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "env APP_PORT=3000 node_modules/.bin/babel-node --presets @babel/env,@babel/react ./server/index.jsx"
+  },
+  "author": "",
+  "license": "ISC"
+}
